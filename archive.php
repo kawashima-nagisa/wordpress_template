@@ -14,10 +14,20 @@
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
                     <div class="site-heading">
-                        <h1>Clean Blog
-                            <?php echo date('n') ?>
-                        </h1>
-                        <span class="subheading">A Blog Theme by Start Bootstrap</span>
+                        <?php if (is_category()): ?>
+                            <h1>Category
+                            </h1>
+                        <?php elseif (is_author()): ?>
+                            <h1>Author</h1>
+                        <?php elseif (is_date()): ?>
+                            <h1>Date</h1>
+                        <?php else: ?>
+                            <h1>Tag
+                            </h1>
+                        <?php endif; ?>
+                        <span class="subheading">
+                            <?php wp_title(); ?>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -60,12 +70,6 @@
                     <?php endwhile; ?>
 
                     <!-- Pager-->
-                    <!-- <div class="d-flex justify-content-end mb-4">
-                        <a class="btn btn-primary text-uppercase" href="#">新しい記事へ ←</a>
-                    </div> -->
-
-                    <!-- <a class="btn btn-primary text-uppercase" href="#">
-                        古い記事へ →</a> -->
                     <?php
                     $link = get_previous_posts_link('新しい記事へ→');
                     // var_dump($link);
@@ -84,12 +88,11 @@
 
                     }
                     ?>
-                </div>
-            <?php else: ?>
-                <p>記事が見つかりませんでした</p>
-            <?php endif; ?>
+                <?php else: ?>
+                    <p>記事が見つかりませんでした</p>
+                <?php endif; ?>
+            </div>
         </div>
-    </div>
     </div>
 
 
