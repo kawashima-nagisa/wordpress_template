@@ -1,12 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html <?php language_attributes(); ?>>
 
 <head>
     <?php get_header(); ?>
 
 </head>
 
-<body>
+<body <?php body_class(); ?>>
+
+    <?php
+    // $num = 3;
+    // echo $num + 1;
+    // echo $num + 2;
+    // echo $num + 3;
+    
+    // $kawashima = [];
+    // $kawashima[1] = 'Yamada';
+    // $kawashima[2] = 'Tanaka';
+    // $kawashima[3] = 'YOshisa';
+    // echo $kawashima[2];
+    
+    // $items = [];
+    // $items['apple'] = 'apple';
+    // $items['peach'] = 'peach';
+    // $items['orange'] = 'orange';
+    // echo $items['peach'];
+    ?>
+
     <?php get_template_part('includes/header'); ?>
     <?php if (have_posts()): ?>
         <!-- Page Header-->
@@ -14,18 +34,13 @@
             the_post(); ?>
 
             <?php
-            if (has_post_thumbnail()):
-
-                $id = get_post_thumbnail_id();
-
-                $img = wp_get_attachment_image_src($id, 'large');
-            else:
-                $img = array(get_template_directory_uri() . '/assets/img/post-bg.jpg');
-
-            endif;
+            $eyecatch = get__eyecatch_width_default();
             // var_dump($img);
+    
             ?>
-            <header class="masthead" style="background-image: url('<?php echo $img[0]; ?>')">
+
+
+            <header class="masthead" style="background-image: url('<?php echo $eyecatch[0]; ?>')">
                 <div class="container position-relative px-4 px-lg-5">
                     <div class="row gx-4 gx-lg-5 justify-content-center">
                         <div class="col-md-10 col-lg-8 col-xl-7">
